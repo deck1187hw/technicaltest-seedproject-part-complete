@@ -1,7 +1,8 @@
 class ViewDeals {
-  constructor(store, template) {
+  constructor(store, template, filterDeals) {
     this.store = store;
     this.template = template;
+    this.filterDeals = filterDeals;
     this.dealList = document.getElementById("deal-list");
   }
 
@@ -13,7 +14,7 @@ class ViewDeals {
   }
 
   update(state) {
-    this.filteredDeals = this.filterDeals.filter(state.deals, state.productFilters, state.providerFilters)
+    this.filteredDeals = this.filterDeals.filter(state.deals, state.productFilters, state.providerFilter)
     this.render(this.filteredDeals)
   }
 }

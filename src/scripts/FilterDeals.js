@@ -23,7 +23,7 @@ class FilterDeals {
         return item => item.provider.id === provider
     }
 
-    filter(deals = [], productFilters = [], providerFilters = [] ){
+    filter(deals = [], productFilters = [], providerFilter ){
 
         this.customFiltersFncts = this.filterCustomProvidersGenerateFunctions(productFilters)
         this.customFiltersFncts.push(this.filterIgnorePhone(productFilters));
@@ -34,8 +34,8 @@ class FilterDeals {
                 return acc.filter(filterFunc);
             }, deals );
         }
-        if(providerFilters.length > 0){
-            filteredDeals = filteredDeals.filter(this.filterProviderSingleFunction(providerFilters[0]))
+        if(providerFilter){
+            filteredDeals = filteredDeals.filter(this.filterProviderSingleFunction(providerFilter))
         }
         
         return filteredDeals

@@ -50,24 +50,24 @@ describe("Filter Deals Class", () => {
             expect(result).toEqual(mockData.deals);
         });
         it("should return 4 deals filtered when specify Broadband", () => {
-            const result = filterDeals.filter(sut.deals, ['Broadband'], [])
+            const result = filterDeals.filter(sut.deals, ['Broadband'], null)
             expect(result.length).toEqual(4);
         });
         it("WHEN filtering by broadband THEN show the broadband 4 only deals", () => {
-            const result = filterDeals.filter(sut.deals, ['Broadband'], [])
+            const result = filterDeals.filter(sut.deals, ['Broadband'],  null)
             expect(result.map(item => item.id).sort()).toEqual([ 6158, 4359, 4371, 5459 ].sort());
         });
         it("WHEN filtering by broadband AND tv THEN show the 4 deals for broadband and tv only", () => {
-            const result = filterDeals.filter(sut.deals, ['Broadband', 'TV'], [])
+            const result = filterDeals.filter(sut.deals, ['Broadband', 'TV'], null)
             expect(result.map(item => item.id).sort()).toEqual([ 5738, 6074, 6165, 6468 ].sort());
         });
         it("WHEN filtering by broadband AND mobile THEN show the 1 deal for broadband and mobile only", () => {
-            const result = filterDeals.filter(sut.deals, ['Broadband', 'Mobile'], [])
+            const result = filterDeals.filter(sut.deals, ['Broadband', 'Mobile'], null)
             expect(result.map(item => item.id).sort()).toEqual([ 4276 ].sort());
         });
         it("WHEN filtering by Sky THEN show the 1 deal for Sky only (ID = 1)", () => {
             const result = filterDeals.filter(sut.deals, [], [1])
-            console.log('res',result)
+      
         });
     });
     
