@@ -7,5 +7,14 @@ class FilterDeals {
             return ptype.toLowerCase().includes(element.toLowerCase());
         }) || null
     }
+    
+    filter(state){
+        this.deals = state.deals;
+        this.filterTypes = state.productFilters;
+        this.filterProvider = state.providerFilter;
+        
+        return this.deals
+  
+      }
   }
   export default FilterDeals;
