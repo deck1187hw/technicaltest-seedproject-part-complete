@@ -23,7 +23,13 @@ describe("Filter Deals Class", () => {
             expect(result).toEqual(null);
           });
     });
-
+    describe("Generate Filter Functions", () => {
+        it("should generate same number of functions as filter types", () => {
+            const result = filterDeals.filterCustomProvidersGenerateFunctions(['Broadband', 'Other one'])
+            expect(result.length).toEqual(2);
+        });
+    });
+/*
     describe("filter", () => {
         it("should return the deals if no filter specified", () => {
             const result = sut.deals;
@@ -34,5 +40,6 @@ describe("Filter Deals Class", () => {
             expect(result.length).toEqual(4);
         });
     });
+  */  
 
 });

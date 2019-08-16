@@ -10,11 +10,21 @@ class FilterDeals {
             return ptype.toLowerCase().includes(element.toLowerCase());
         }) || null
     }
+    filterCustomProvidersGenerateFunctions(filterTypes){
+        let customFiltersFncts = []
+        filterTypes.forEach((filterValue) => {
+          customFiltersFncts.push(
+            item => this.findFilter(item.productTypes, filterValue)
+          );
+        });
+        return customFiltersFncts
+    }
 
     filter(deals = [], productFilters = [], providerFilters = [] ){
         this.deals = deals;
         this.filterTypes = productFilters;
         this.filterProvider = providerFilters;
+        this.customFiltersFncts = this.filterCustomProvidersGenerateFunctions(this.filterTypes)
         
         return this.deals
   
