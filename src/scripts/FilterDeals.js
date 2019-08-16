@@ -10,6 +10,9 @@ class FilterDeals {
             return ptype.toLowerCase().includes(element.toLowerCase());
         }) || null
     }
+    filterIgnorePhone(filterTypes){
+        return item => item.productTypes.length <= filterTypes.length + 1
+    }
     filterCustomProvidersGenerateFunctions(filterTypes){
         let customFiltersFncts = []
         filterTypes.forEach((filterValue) => {
@@ -17,6 +20,7 @@ class FilterDeals {
             item => this.findFilter(item.productTypes, filterValue)
           );
         });
+        
         return customFiltersFncts
     }
 
@@ -25,6 +29,14 @@ class FilterDeals {
         this.filterTypes = productFilters;
         this.filterProvider = providerFilters;
         this.customFiltersFncts = this.filterCustomProvidersGenerateFunctions(this.filterTypes)
+        this.customFiltersFncts.push(this.filterIgnorePhone(this.filterTypes));
+        
+        // Filter product types
+        if(this.filterTypes.length > 0){
+            this.deals = this.customFiltersFncts.reduce(function (acc, filterFunc) {
+                return acc.filter(filterFunc);
+            }, this.deals );
+        }
         
         return this.deals
   
