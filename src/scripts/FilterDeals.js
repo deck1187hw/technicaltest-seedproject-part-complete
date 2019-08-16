@@ -1,9 +1,6 @@
 class FilterDeals {
     constructor(store) {
         this.store = store;
-        this.deals = store.state.deals;
-        this.filterTypes = store.state.productFilters;
-        this.filterProvider = store.state.providerFilter;
     }
     findFilter(productTypes = [], element = ""){
         return productTypes.find(function(ptype){
@@ -27,23 +24,22 @@ class FilterDeals {
     }
 
     filter(deals = [], productFilters = [], providerFilters = [] ){
-        this.deals = deals;
-        this.filterTypes = productFilters;
-        this.filterProvider = providerFilters;
-        this.customFiltersFncts = this.filterCustomProvidersGenerateFunctions(this.filterTypes)
-        this.customFiltersFncts.push(this.filterIgnorePhone(this.filterTypes));
+
+
+        this.customFiltersFncts = this.filterCustomProvidersGenerateFunctions(productFilters)
+        this.customFiltersFncts.push(this.filterIgnorePhone(productFilters));
+        let filteredDeals = []
         
-        // Filter product types
-        if(this.filterTypes.length > 0){
-            this.deals = this.customFiltersFncts.reduce(function (acc, filterFunc) {
+        if(productFilters.length > 0){
+            filteredDeals = this.customFiltersFncts.reduce(function (acc, filterFunc) {
                 return acc.filter(filterFunc);
-            }, this.deals );
+            }, deals );
         }
-        if(this.filterProvider.length > 0){
-            this.deals = this.deals.filter(this.filterProviderSingleFunction(this.filterProvider[0]))
+        if(providerFilters.length > 0){
+            filteredDeals = deals.filter(this.filterProviderSingleFunction(providerFilters[0]))
         }
         
-        return this.deals
+        return filteredDeals
   
       }
   }
