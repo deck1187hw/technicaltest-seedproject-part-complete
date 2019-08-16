@@ -23,12 +23,19 @@ describe("Filter Deals Class", () => {
             expect(result).toEqual(null);
           });
     });
-    describe("Generate Filter Functions", () => {
+    describe("Generate Filter Type Functions", () => {
         it("should generate same number of functions as filter types", () => {
             const result = filterDeals.filterCustomProvidersGenerateFunctions(['Broadband', 'Other one'])
             expect(result.length).toEqual(2);
         });
     });
+    describe("Generate Provider Functions", () => {
+        it("should generate same number of functions as filter provider", () => {
+            const result = filterDeals.filterProviderSingleFunction(['Sky'])
+            expect(result.length).toEqual(1);
+        });
+    });
+    
 
     describe("filter", () => {
         it("should return the deals if no filter specified", () => {
@@ -49,12 +56,10 @@ describe("Filter Deals Class", () => {
         });
         it("WHEN filtering by broadband AND mobile THEN show the 1 deal for broadband and mobile only", () => {
             const result = filterDeals.filter(sut.deals, ['Broadband', 'Mobile'], [])
-            console.log(result)
             expect(result.map(item => item.id).sort()).toEqual([ 4276 ].sort());
         });
         it("WHEN filtering by Sky THEN show the 1 deal for Sky only", () => {
             const result = filterDeals.filter(sut.deals, [], ['Sky'])
-
         });
     });
     

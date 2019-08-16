@@ -20,8 +20,11 @@ class FilterDeals {
             item => this.findFilter(item.productTypes, filterValue)
           );
         });
-        
         return customFiltersFncts
+    }
+    filterProviderSingleFunction(filterProvider){
+
+        return 
     }
 
     filter(deals = [], productFilters = [], providerFilters = [] ){
