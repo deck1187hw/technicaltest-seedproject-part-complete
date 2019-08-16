@@ -44,7 +44,6 @@ describe("Filter Deals Class", () => {
         });
     });
     
-
     describe("filter", () => {
         it("should return the deals if no filter specified", () => {
             const result = sut.deals;
@@ -66,9 +65,9 @@ describe("Filter Deals Class", () => {
             const result = filterDeals.filter(sut.deals, ['Broadband', 'Mobile'], [])
             expect(result.map(item => item.id).sort()).toEqual([ 4276 ].sort());
         });
-        it("WHEN filtering by Sky THEN show the 1 deal for Sky only", () => {
-            const result = filterDeals.filter(sut.deals, [], ['Sky'])
-            console.log(result)
+        it("WHEN filtering by Sky THEN show the 1 deal for Sky only (ID = 1)", () => {
+            const result = filterDeals.filter(sut.deals, [], [1])
+            console.log('res',result)
         });
     });
     
