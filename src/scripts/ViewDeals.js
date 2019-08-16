@@ -13,7 +13,8 @@ class ViewDeals {
   }
 
   update(state) {
-    this.render(this.store.deals)
+    this.filteredDeals = this.filterDeals.filter(state.deals, state.productFilters, state.providerFilters)
+    this.render(this.filteredDeals)
   }
 }
 

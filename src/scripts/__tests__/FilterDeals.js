@@ -17,6 +17,7 @@ describe("Filter Deals Class", () => {
             const result = filterDeals.findFilter(["Broadband", "Phone"], "broadband");
             expect(result).toEqual("Broadband");
           });
+
           it("should return null when no element found", () => {
             const result = filterDeals.findFilter(["Broadband", "Phone"], "NOT EXISTING");
             expect(result).toEqual(null);
@@ -25,10 +26,12 @@ describe("Filter Deals Class", () => {
 
     describe("filter", () => {
         it("should return the deals if no filter specified", () => {
-            // Act
             const result = sut.deals;
-            // Assert
             expect(result).toEqual(mockData.deals);
+        });
+        it("should return 4 deals filtered when specify Broadband", () => {
+            const result = filterDeals.filter(sut.deals, ['Broadband'], [])
+            expect(result.length).toEqual(4);
         });
     });
 
