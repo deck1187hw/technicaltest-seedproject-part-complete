@@ -28,11 +28,19 @@ describe("Filter Deals Class", () => {
             const result = filterDeals.filterCustomProvidersGenerateFunctions(['Broadband', 'Other one'])
             expect(result.length).toEqual(2);
         });
+        it("should return an object of functions", () => {
+            const result = filterDeals.filterCustomProvidersGenerateFunctions(['Broadband'])
+            expect(typeof result).toEqual('object');
+        });
+        it("should return a function", () => {
+            const result = filterDeals.filterCustomProvidersGenerateFunctions(['Broadband'])
+            expect(typeof result[0]).toEqual('function');
+        });
     });
     describe("Generate Provider Functions", () => {
-        it("should generate same number of functions as filter provider", () => {
+        it("provider filter should return a function", () => {
             const result = filterDeals.filterProviderSingleFunction(['Sky'])
-            expect(result.length).toEqual(1);
+            expect(typeof result).toEqual('function');
         });
     });
     
@@ -60,6 +68,7 @@ describe("Filter Deals Class", () => {
         });
         it("WHEN filtering by Sky THEN show the 1 deal for Sky only", () => {
             const result = filterDeals.filter(sut.deals, [], ['Sky'])
+            console.log(result)
         });
     });
     

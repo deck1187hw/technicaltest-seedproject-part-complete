@@ -22,9 +22,8 @@ class FilterDeals {
         });
         return customFiltersFncts
     }
-    filterProviderSingleFunction(filterProvider){
-
-        return 
+    filterProviderSingleFunction(provider){
+        return item => item.provider.id === provider
     }
 
     filter(deals = [], productFilters = [], providerFilters = [] ){
@@ -39,6 +38,9 @@ class FilterDeals {
             this.deals = this.customFiltersFncts.reduce(function (acc, filterFunc) {
                 return acc.filter(filterFunc);
             }, this.deals );
+        }
+        if(this.filterProvider.length > 0){
+            this.deals = this.deals.filter(this.filterProviderSingleFunction(this.filterProvider[0]))
         }
         
         return this.deals
