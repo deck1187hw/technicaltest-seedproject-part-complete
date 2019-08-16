@@ -3,5 +3,8 @@ class FilterDeals {
         this.store = store;
   
     }
+    findFilter(productTypes = [], element = ''){
+        return true
+    }
   }
   export default FilterDeals;
